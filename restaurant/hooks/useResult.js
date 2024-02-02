@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import yelp from "../api/yelp";
 
 export default () => {
-
+    const [result, setResult] = useState([]);
     const searchApi = async (searchTerm) => {
         try {
             const response = await yelp.get("/search", {
@@ -11,14 +12,14 @@ export default () => {
                     location: "İstanbul"
                 }
             });
-            setResults(response.data.businesses);
+            setResult(response.data.businesses);
         } catch (err) {
-            setErrorMessage("Something went wrong");
+            console.log(err);
         }
     };
     useEffect(() => {
         searchApi("pasta");
     },[]);
     
-    return [searchApi];
+    return [searchApi, result];
 }
