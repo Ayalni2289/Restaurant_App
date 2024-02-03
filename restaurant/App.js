@@ -3,6 +3,7 @@ import { StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SearchScreen from './screens/SearchScreen';
+import ResultShowScreen from './screens/ResultShowScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,7 +12,9 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerTitle:"Restaurant App"}}>
         <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="ResultShow" component={ResultShowScreen} />
       </Stack.Navigator>
+      
     </NavigationContainer>
   );
 }
