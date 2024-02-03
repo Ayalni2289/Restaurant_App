@@ -5,14 +5,16 @@ import ResultDetail from './ResultDetail';
 export default function ResultList({title,result}) {
     console.log(result);
   return (
-    <View>
-      <Text>{title}</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
       <FlatList
+        horizontal
+        showsHorizontalScrollIndicator={false}
         data={result}
         renderItem={({ item }) => {
           return(
             <TouchableOpacity>
-              <ResultDetail  result={item}/>
+              <ResultDetail result={item}/>
             </TouchableOpacity>
           )
         }}
@@ -21,4 +23,14 @@ export default function ResultList({title,result}) {
   );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container:{
+        marginBottom:10
+    },
+    title:{
+        fontSize:18,
+        fontWeight:"bold",
+        marginLeft:15,
+        marginBottom:5
+    }
+})
