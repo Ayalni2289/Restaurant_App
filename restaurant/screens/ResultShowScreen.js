@@ -1,4 +1,4 @@
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import yelp from "../api/yelp";
 
@@ -19,24 +19,39 @@ export default function ResultShowScreen({ route }) {
   }
 
   return (
-    <View>
-      <Text>{result.name}</Text>
-      <Text>{result.phone}</Text>
-      <Text>{result.location.address1}</Text>
-      <Text>{result.location.city}</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>{result.name}  </Text>
+      <Text style={styles.phone}>{result.phone}</Text>
       <FlatList
         data={result.photos}
         renderItem={({ item }) => {
           return <Image style={styles.image} source={{ uri: item }} />;
         }}
+        keyExtractor={(item, index) => index.toString()} // Her öğenin benzersiz bir anahtarı olmalıdır.
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    margin: 10,
+  },
   image: {
     height: 200,
-    width: 300,
+    margin: 10,
+    borderRadius: 4,
+    marginEnd: 10,
+  },  
+  title:{
+    alignSelf:"center",
+    fontWeight:"bold",
+    fontSize:20,
+    marginVertical:10,
+  },
+  phone:{
+    alignSelf:"center",
+    fontSize:15,
   },
 });
