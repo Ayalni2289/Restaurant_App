@@ -4,7 +4,6 @@ import ResultDetail from './ResultDetail';
 import { useNavigation } from '@react-navigation/native';
 
 export default function ResultList({title,result}) {
-    console.log(result);
     const navigation = useNavigation();
   return (
     <View style={styles.container}>

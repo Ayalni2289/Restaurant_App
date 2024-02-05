@@ -3,6 +3,7 @@ import yelp from "../api/yelp";
 
 export default () => {
     const [result, setResult] = useState([]);
+    const [errorMessage, setErrorMessage] = useState("")
     const searchApi = async (searchTerm) => {
         try {
             const response = await yelp.get("/search", {
@@ -13,13 +14,14 @@ export default () => {
                 }
             });
             setResult(response.data.businesses);
+            setErrorMessage("");
         } catch (err) {
-            console.log(err);
+            setErrorMessage("Something went wrong connection error!");
         }
     };
     useEffect(() => {
         searchApi("pasta");
     },[]);
     
-    return [searchApi, result];
+    return [searchApi, result, errorMessage];
 }
