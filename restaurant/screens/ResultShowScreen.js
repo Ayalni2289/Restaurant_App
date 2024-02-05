@@ -1,6 +1,7 @@
-import { FlatList, Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import yelp from "../api/yelp";
+import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 
 export default function ResultShowScreen({ route }) {
   const id = route.params.id;
@@ -20,8 +21,16 @@ export default function ResultShowScreen({ route }) {
 
   return (
     <View style={styles.container}>
+      
+      
       <Text style={styles.title}>{result.name}  </Text>
       <Text style={styles.phone}>{result.phone}</Text>
+      <View style={styles.icon}>
+      {
+        result.is_closed ? <AntDesign name="closecircle" size={30} color="black" /> :
+        <MaterialIcons name="delivery-dining" size={30} color="black" />
+      }
+      </View>
       <FlatList
         data={result.photos}
         renderItem={({ item }) => {
@@ -34,6 +43,10 @@ export default function ResultShowScreen({ route }) {
 }
 
 const styles = StyleSheet.create({
+  icon:{
+    alignSelf:"center",
+    marginVertical:10,
+  },
   container: {
     flex: 1,
     margin: 10,
